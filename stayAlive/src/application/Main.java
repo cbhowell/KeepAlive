@@ -25,14 +25,23 @@ public class Main {
 	 */
 	public static void main(String[] args) throws AWTException, InterruptedException {
 		
-		//Variable Declarations and Initializations
+		//**************************PROGRAM CONFIGURATION SETTINS*****************************************		
+		int x = 1900;          	// Set the x position of where the cursor should move on the user's screen.
+		int y = 30;            	// Set the y position of where the cursor should move on the user's screen.		
+		int waitTime = 420000; 	//Set the time between loop iterations (7 minutes = 420000 milliseconds)	
+		int delayTime = 8;     	// Set the time between individual mouse events (For testing purposes).
+		int numberOfLoops = 3; 	//Here, the user can set the number of times the program should loop/run.
+		//************************************************************************************************
 		
-		int x = 1900, y = 30, count = 0,  numberOfLoops = 3; //NumberOfLoops = the number of times the program should run
-		Robot robot = new Robot();
-		boolean loopAgain = true;
 		
-		//Main program logic
+		//**************************ADMINISTRATIVE CODE  BLOCK********************************************
+		Robot robot = new Robot();  // Create Robot Java object.
+		boolean loopAgain = true;   // Variable to determine whether loop should execute.
+		int count = 0; 				// Variable to track the number of loops
+		//************************************************************************************************
 		
+		
+		//****************************MAIN PROGRAM LOGIC**************************************************
 		do {
 			//Keep track of the number of loops
 			count++;
@@ -41,17 +50,17 @@ public class Main {
 			//Move the mouse cursor to the specified location on the screen
 			robot.mouseMove(x, y);
 			//Delay for n milliseconds
-			robot.delay(8);		
+			robot.delay(delayTime);		
 			// Click left mouse button
 			robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 			//Delay for n milliseconds
-			robot.delay(8);
+			robot.delay(delayTime);
 			//Release left mouse button
 			robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 			//If the desired number of loops is not met, put the thread to sleep for n milliseconds
-			if(count != numberOfLoops)
-				//Set the time between mouse clicks (7 minutes = 420000 milliseconds)
-				Thread.sleep(420000);		
-		}while(loopAgain);		
+			if(count != numberOfLoops)				
+				Thread.sleep(waitTime);	
+		}while(loopAgain);	
+		//*****************************************************************************************************
 	}
 }
